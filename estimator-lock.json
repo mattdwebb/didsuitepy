@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "Exact bundled review commits; use sibling sources until these commits are published",
+  "estimators": [
+    {
+      "estimator": "twfe",
+      "package": "fasttwfepy",
+      "repository": "mattdwebb/fasttwfepy",
+      "commit": "a5ad0b4d7b85d3f56f4b30fa42cca6e558420882",
+      "version": "0.1.2"
+    },
+    {
+      "estimator": "did2s",
+      "package": "fastdid2spy",
+      "repository": "mattdwebb/fastdid2spy",
+      "commit": "570fe76f0835ab6a2d89fc1b10c39cf047257112",
+      "version": "0.1.0"
+    },
+    {
+      "estimator": "bjs",
+      "package": "fastbjspy",
+      "repository": "mattdwebb/fastbjspy",
+      "commit": "1af7adb3f363419c74d3e1c5e69b71993687a4e2",
+      "version": "0.1.2"
+    },
+    {
+      "estimator": "flex",
+      "package": "fastflexpy",
+      "repository": "mattdwebb/fastflexpy",
+      "commit": "bcb9cead77e9be334d29dccc32e1df21b600bf70",
+      "version": "0.2.0"
+    },
+    {
+      "estimator": "csdid",
+      "package": "fastcsdidpy",
+      "repository": "mattdwebb/fastcsdid",
+      "commit": "bf4a7ada2e3e0dabaa693a050ab3f6df32416904",
+      "version": "1.0.1",
+      "subdirectory": "python",
+      "sibling_directory": "fastcsdid/python",
+      "tag": "v1.0.1",
+      "tag_status": "planned; not yet created"
+    },
+    {
+      "estimator": "undid",
+      "package": "undidpy",
+      "repository": "mattdwebb/undidpy",
+      "commit": "dc33cb836a58f1e762aed58a3bf43700fffd6675",
+      "version": "0.1.0"
+    },
+    {
+      "estimator": "didint",
+      "package": "didintpy",
+      "repository": "mattdwebb/didintpy",
+      "commit": "b1f532de626bd2dda567173ec85fd3ba03edb29a",
+      "version": "0.1.0"
+    },
+    {
+      "estimator": "stacked",
+      "package": "faststackedpy",
+      "repository": "mattdwebb/faststackedpy",
+      "commit": "de5ae2618b6b40c8cbc2f6238f5f9625fd2f3666",
+      "version": "0.1.0"
+    },
+    {
+      "estimator": "lpdid",
+      "package": "fastlpdidpy",
+      "repository": "mattdwebb/fastlpdidpy",
+      "commit": "d446a3a67f13f78878658ef56b2a3f183e749e40",
+      "version": "0.1.0.dev0"
+    }
+  ]
+}

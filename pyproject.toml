@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [{name = "Matthew D. Webb", email = "matt.webb@carleton.ca"}]
+readme = "README.md"
+license = "MIT"
+name = "didsuitepy"
+version = "0.1.0.dev0"
+description = "Native Python DiD comparison and strict cluster randomization inference"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires the estimator backend packages"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]

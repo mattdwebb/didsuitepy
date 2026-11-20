@@ -1,0 +1,2 @@
+estimator  estimate  native_se  jackknife_se status
+    lpdid  1.601279   0.331234      0.365699   PASS

@@ -1,0 +1,33 @@
+name: Pinned estimator integration (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integration:
+    if: github.repository == 'mattdwebb/didsuitepy' && !github.event.repository.fork
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      ESTIMATOR_TOKEN: ${{ secrets.DIDSUITE_REPOSITORY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Require cross-repository read access during staging
+        if: github.event.repository.private && env.ESTIMATOR_TOKEN == ''
+        run: |
+          echo "Set DIDSUITE_REPOSITORY_TOKEN with Contents: read on the pinned estimator repositories before staging integration."
+          exit 1
+      - name: Authenticate Git when a staging token is configured
+        if: env.ESTIMATOR_TOKEN != ''
+        shell: bash
+        run: |
+          git config --global credential.helper '!f() { echo username=x-access-token; echo "password=$ESTIMATOR_TOKEN"; }; f'
+      - run: python -m pip install ".[test]"
+      - run: python tools/install_estimators.py
+      - run: python -m pytest -q
+      - run: python examples/all_rcs.py

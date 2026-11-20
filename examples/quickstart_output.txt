@@ -1,0 +1,4 @@
+estimator  estimate  native_se  jackknife_se status
+     twfe  2.012599   0.367339      0.401294   PASS
+    did2s  2.316869   0.285375      0.336814   PASS
+      bjs  2.316869   0.290170      0.336814   PASS
