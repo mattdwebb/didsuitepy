@@ -19,6 +19,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Verify read access to pinned source commits
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request, urllib.error
+          entries = json.load(open('estimator-lock.json'))['estimators']
+          token = os.environ.get('ESTIMATOR_TOKEN', '')
+          failed = []
+          for entry in entries:
+              repo, commit = entry['repository'], entry['commit']
+              headers = {'Accept': 'application/vnd.github+json'}
+              if token:
+                  headers['Authorization'] = 'Bearer ' + token
+              request = urllib.request.Request(
+                  f'https://api.github.com/repos/{repo}/commits/{commit}', headers=headers)
+              try:
+                  with urllib.request.urlopen(request) as response:
+                      status = response.status
+              except urllib.error.HTTPError as error:
+                  status = error.code
+              print(f'{repo}: HTTP {status}')
+              if status != 200:
+                  failed.append(repo)
+          if failed:
+              raise SystemExit('Pinned-source read access failed: ' + ', '.join(failed))
+          PY
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: '4.5.3'
