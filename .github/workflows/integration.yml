@@ -17,6 +17,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.3'
+      - name: Configure independent R probability oracle
+        shell: bash
+        run: |
+          echo "RSCRIPT=$(command -v Rscript)" >> "$GITHUB_ENV"
+          Rscript --vanilla -e 'cat(R.version.string, "\n")'
       - name: Require cross-repository read access during staging
         if: github.event.repository.private && env.ESTIMATOR_TOKEN == ''
         run: |
@@ -29,5 +37,21 @@ jobs:
           git config --global credential.helper '!f() { echo username=x-access-token; echo "password=$ESTIMATOR_TOKEN"; }; f'
       - run: python -m pip install ".[test]"
       - run: python tools/install_estimators.py
-      - run: python -m pytest -q
+      - run: python -m pytest -q -ra --junitxml=integration-results.xml
+      - name: Require complete integration coverage
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          suites = list(ET.parse('integration-results.xml').getroot().iter('testsuite'))
+          counts = {key: sum(int(s.attrib.get(key, 0)) for s in suites)
+                    for key in ('tests', 'failures', 'errors', 'skipped')}
+          assert counts['tests'] >= 80 and all(counts[k] == 0 for k in ('failures', 'errors', 'skipped')), counts
+          print(f"{counts['tests']} passed, 0 skipped")
+          PY
       - run: python examples/all_rcs.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: integration-results.xml
+          if-no-files-found: error
