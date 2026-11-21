@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Exact bundled review commits; use sibling sources until these commits are published",
+  "status": "Pinned commits in the live private replacement repositories; canonical public Fast CSDID v1.0.1",
   "estimators": [
     {
       "estimator": "twfe",
@@ -20,7 +20,7 @@
       "estimator": "bjs",
       "package": "fastbjspy",
       "repository": "mattdwebb/fastbjspy",
-      "commit": "1af7adb3f363419c74d3e1c5e69b71993687a4e2",
+      "commit": "aea6c52236c513b00544d530ad1c3fb437717d6b",
       "version": "0.1.2"
     },
     {
@@ -39,34 +39,34 @@
       "subdirectory": "python",
       "sibling_directory": "fastcsdid/python",
       "tag": "v1.0.1",
-      "tag_status": "planned; not yet created"
+      "tag_status": "published; annotated v1.0.1 resolves to the pinned commit; immutable"
     },
     {
       "estimator": "undid",
       "package": "undidpy",
       "repository": "mattdwebb/undidpy",
-      "commit": "dc33cb836a58f1e762aed58a3bf43700fffd6675",
+      "commit": "cfb4debda78d9e8c99573018da183f6eca81f4a2",
       "version": "0.1.0"
     },
     {
       "estimator": "didint",
       "package": "didintpy",
       "repository": "mattdwebb/didintpy",
-      "commit": "b1f532de626bd2dda567173ec85fd3ba03edb29a",
+      "commit": "942e01b3c1576a7c3e05b75cecfe65421628c632",
       "version": "0.1.0"
     },
     {
       "estimator": "stacked",
       "package": "faststackedpy",
       "repository": "mattdwebb/faststackedpy",
-      "commit": "de5ae2618b6b40c8cbc2f6238f5f9625fd2f3666",
+      "commit": "9710cd7be82cc400075fc736c05f0beef0b9b607",
       "version": "0.1.0"
     },
     {
       "estimator": "lpdid",
       "package": "fastlpdidpy",
       "repository": "mattdwebb/fastlpdidpy",
-      "commit": "d446a3a67f13f78878658ef56b2a3f183e749e40",
+      "commit": "67a25d6a1c87e00395fa55c15ff69b3efc1fe09c",
       "version": "0.1.0.dev0"
     }
   ]
